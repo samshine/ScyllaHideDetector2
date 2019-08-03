@@ -456,6 +456,54 @@ void ntdll_detection()
 	catch (...)
 	{
 	}
+
+	// NtQuerySystemTime
+	try
+	{
+		auto hooked_func = GetProcedureAddress(ntdll, "NtQuerySystemTime");
+		if (*(PUCHAR)hooked_func == 0xE9) // jmp rel32
+		{
+			LONG relativeOffset = *(PLONG)((ULONG_PTR)hooked_func + 1);
+			hooked_func = (NtQuerySystemTime_t)((ULONG_PTR)hooked_func + relativeOffset + 5);
+		}
+		auto original_func = GetProcedureAddress(ntdll_mapped, "NtQuerySystemTime");
+
+		if (*(PUCHAR)original_func == 0xE9) // jmp rel32
+		{
+			LONG relativeOffset = *(PLONG)((ULONG_PTR)original_func + 1);
+			original_func = (NtQuerySystemTime_t)((ULONG_PTR)original_func + relativeOffset + 5);
+		}
+
+		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)& ntdll, nullptr);
+		auto func_size = func_data->EndAddress - func_data->BeginAddress;
+
+		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
+
+		// detect hook and restore bytes and restore bytes
+		if (result != func_size)
+		{
+			log(xorstr_("[DETECTED] NtQuerySystemTime\r\n"));
+			DWORD oldprotect = 0;
+			VirtualProtect(hooked_func, func_size, PAGE_EXECUTE_READWRITE, &oldprotect);
+
+			RtlCopyMemory(hooked_func, original_func, func_size);
+
+			result = RtlCompareMemory(hooked_func, original_func, func_size);
+			if (result == func_size)
+			{
+				VirtualProtect(hooked_func, func_size, oldprotect, &oldprotect);
+			}
+		}
+		else
+		{
+			log(xorstr_("[OK] NtQuerySystemTime\r\n"));
+		}
+		LARGE_INTEGER time;
+		reinterpret_cast<NtQuerySystemTime_t>(hooked_func)(&time);
+	}
+	catch (...)
+	{
+	}
 }
 
 void kernelbase_detection()

@@ -151,6 +151,7 @@ using NtClose_t                   = NTSTATUS(NTAPI*)();
 using NtQueryPerformanceCounter_t = NTSTATUS(NTAPI*)();
 using NtGetContextThread_t        = NTSTATUS(NTAPI*)();
 using NtSetContextThread_t        = NTSTATUS(NTAPI*)();
+using NtQuerySystemTime_t         = NTSTATUS(NTAPI*)(OUT PLARGE_INTEGER SystemTime);
 using GetTickCount_t              = DWORD(WINAPI*)();
 using GetTickCount64_t            = ULONGLONG(WINAPI*)();
 using OutputDebugStringA_t        = DWORD(WINAPI*)(LPCSTR lpOutputString);
