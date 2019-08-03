@@ -394,7 +394,7 @@ void ntdll_detection()
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
 
-		// detect hook and restore bytes and restore bytes
+		// detect hook and restore bytes
 		if (result != func_size)
 		{
 			log(xorstr_("[DETECTED] NtGetContextThread\r\n"));
@@ -431,7 +431,7 @@ void ntdll_detection()
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
 
-		// detect hook and restore bytes and restore bytes
+		// detect hook and restore bytes
 		if (result != func_size)
 		{
 			log(xorstr_("[DETECTED] NtSetContextThread\r\n"));
@@ -479,7 +479,7 @@ void ntdll_detection()
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
 
-		// detect hook and restore bytes and restore bytes
+		// detect hook and restore bytes
 		if (result != func_size)
 		{
 			log(xorstr_("[DETECTED] NtQuerySystemTime\r\n"));
