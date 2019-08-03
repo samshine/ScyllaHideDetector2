@@ -28,7 +28,12 @@ Allows you to find the use of ScyllaHide, if your program will debug and *restor
 ![Normal](screen.png)
 
 Detection
+
 ![Debugger](detect.png)
+
+Restore bytes (after execution program)
+
+![Restore bytes](restorebytes.png)
 
 ## Thanks
 hiddy (inject.ws russian re forum)
