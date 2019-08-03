@@ -9,6 +9,9 @@
 void ntdll_detection()
 {
 	auto ntdll = GetModuleBaseAddress(L"ntdll.dll");
+	PVOID ntdll_mapped = nullptr;
+	MapNativeModule("ntdll.dll", &ntdll_mapped);
+
 	// NtYieldExecution
 	try
 	{
@@ -16,8 +19,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtYieldExecution");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -55,8 +56,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtSetInformationThread");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -95,8 +94,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtSetInformationProcess");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -134,8 +131,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtQuerySystemInformation");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -173,8 +168,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtQueryInformationProcess");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -212,8 +205,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtQueryObject");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -251,8 +242,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtCreateThreadEx");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -290,8 +279,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtSetDebugFilterState");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -329,8 +316,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtClose");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -368,8 +353,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtQueryPerformanceCounter");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -407,8 +390,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtGetContextThread");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -446,8 +427,6 @@ void ntdll_detection()
 		auto func_data = RtlLookupFunctionEntry((DWORD64)hooked_func, (DWORD64*)&ntdll, nullptr);
 		auto func_size = func_data->EndAddress - func_data->BeginAddress;
 
-		PVOID ntdll_mapped = nullptr;
-		MapNativeModule("ntdll.dll", &ntdll_mapped);
 		auto original_func = GetProcedureAddress(ntdll_mapped, "NtSetContextThread");
 
 		auto result = RtlCompareMemory(hooked_func, original_func, func_size);
@@ -482,14 +461,14 @@ void ntdll_detection()
 void kernelbase_detection()
 {
 	auto kernelbase = GetModuleBaseAddress("kernelbase.dll");
+	PVOID kernelbase_mapped = nullptr;
+	MapNativeModule("kernelbase.dll", &kernelbase_mapped);
 
 	// GetTickCount
 	try
 	{
 		auto hooked_func = GetProcedureAddress(kernelbase, "GetTickCount");
 
-		PVOID kernelbase_mapped = nullptr;
-		MapNativeModule("kernelbase.dll", &kernelbase_mapped);
 		auto original_func = GetProcedureAddress(kernelbase_mapped, "GetTickCount");
 
 		auto func_size = 0x18;
@@ -528,8 +507,6 @@ void kernelbase_detection()
 	{
 		auto hooked_func = GetProcedureAddress(kernelbase, "GetTickCount64");
 
-		PVOID kernelbase_mapped = nullptr;
-		MapNativeModule("kernelbase.dll", &kernelbase_mapped);
 		auto original_func = GetProcedureAddress(kernelbase_mapped, "GetTickCount64");
 
 		auto func_size = 0x18;
@@ -568,8 +545,6 @@ void kernelbase_detection()
 	{
 		auto hooked_func = GetProcedureAddress(kernelbase, "OutputDebugStringA");
 
-		PVOID kernelbase_mapped = nullptr;
-		MapNativeModule("kernelbase.dll", &kernelbase_mapped);
 		auto original_func = GetProcedureAddress(kernelbase_mapped, "OutputDebugStringA");
 
 		auto func_size = 0x18;
@@ -608,8 +583,6 @@ void kernelbase_detection()
 	{
 		auto hooked_func = GetProcedureAddress(kernelbase, "GetLocalTime");
 
-		PVOID kernelbase_mapped = nullptr;
-		MapNativeModule("kernelbase.dll", &kernelbase_mapped);
 		auto original_func = GetProcedureAddress(kernelbase_mapped, "GetLocalTime");
 
 		auto func_size = 0x18;
@@ -648,8 +621,6 @@ void kernelbase_detection()
 	{
 		auto hooked_func = GetProcedureAddress(kernelbase, "GetSystemTime");
 
-		PVOID kernelbase_mapped = nullptr;
-		MapNativeModule("kernelbase.dll", &kernelbase_mapped);
 		auto original_func = GetProcedureAddress(kernelbase_mapped, "GetSystemTime");
 
 		auto func_size = 0x18;
