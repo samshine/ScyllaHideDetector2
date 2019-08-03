@@ -18,6 +18,7 @@ Allows you to find the use of ScyllaHide, if your program will debug and *restor
 - [x] NtClose
 - [x] NtQueryPerformanceCounter
 - [x] NtGetContextThread
+- [x] NtQuerySystemTime
 - [x] GetTickCount
 - [x] GetTickCount64
 - [x] OutputDebugStringA
